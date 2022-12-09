@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+    <head>
+        <title>a klev blog</title>
+    </head>
+    <body style='display: grid; grid-template-columns: 1fr 3fr'>
+        <div>
+            Table of contents:
+            <ul id='toc'>
+                <!-- this is where the table of contents will be rendered -->
+            </ul>
+        </div>
+        <div id='content'>
+            <!-- this is where the content of the blog posts will go -->
+            Loading...
+        </div>
+    </body>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+let tocEl = document.getElementById('toc');
+let contentEl = document.getElementById('content');
+
+let fetchOpts = {headers: {
+        'Authorization': 'Bearer 2IgLr98Bm1ezvL7oXVMA5obAdwv_5H6nz9ovCgysaEwbfk7ctShBvcXyKZSfh',
+        'Content-Type': 'application/json',
+}}
+
+fetch('https://api.klev.dev/message/log_2IgKFdvXeeKwJwwZczZBZC5wwmT', fetchOpts)
+    .then((response) => response.json())
+    .then((json) => {contentEl.innerHTML = marked.parse(json.value)})
+    .catch((err) => console.log(err));
+
+fetch('https://api.klev.dev/messages/log_2IgKB6XuTkvOxWXR7lLSONtvfAJ?offset=-1', fetchOpts)
+    .then((response) => response.json())
+    .then((json) => (json.messages ?? []))
+    .then((posts) => {
+        posts.forEach((m) => {
+            let el = document.getElementById(m.key)
+            if (!el) {
+                el = document.createElement('li');
+                el.id = m.key;
+
+                el.addEventListener('click', (e) => {
+                    switchPosts(m.key);
+                    return false;
+                })
+
+                tocEl.prepend(el);
+            }
+            el.innerHTML = '<a href="#" onclick="return false">' + m.value + '</a>'
+        })
+    })
+    .catch((err) => console.log(err));
+
+function switchPosts(key) {
+    fetch('https://api.klev.dev/message/log_2IgKFdvXeeKwJwwZczZBZC5wwmT/key?key=' + key, fetchOpts)
+        .then((response) => response.json())
+        .then((json) => {contentEl.innerHTML = marked.parse(json.value)})
+        .catch((err) => console.log(err));
+}
+</script>
+</html>
