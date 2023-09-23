@@ -1,11 +1,11 @@
 [//]: # ({"title": "Webhooks and GitHub", "date": "2023-03-27"})
 
-Webhooks
-========
+Ingress Webhooks
+================
 
-klev has support for ingesting via webhooks, also called `ingress-webhooks`. We support Slack, Stripe, and since recently GitHub.
+klev has support for ingesting messages via webhooks, also called `ingress-webhooks`. We support Slack, Stripe, and since recently GitHub.
 
-You configure an ingress webhook with a provider, secret and target log. Once klev receives the http call, it will validate it, and then push a new message on the target log with the webhook payload as a value. 
+You configure an ingress webhook with a provider, secret and target log. Once klev receives the https call, it will validate it, and then push a new message on the target log with the webhook payload as a value. 
 
 GitHub Webhooks
 ---------------
