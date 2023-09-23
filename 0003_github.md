@@ -3,14 +3,14 @@
 Webhooks
 ========
 
-klev has support for ingesting via webhooks. We support Slack, Stripe, and since recently GitHub.
+klev has support for ingesting via webhooks, also called `ingress-webhooks`. We support Slack, Stripe, and since recently GitHub.
 
-You configure a webhook with provider, secret and a target log. Once klev receives the http call, it will validate it, and then push a new message on the target log with the webhook payload as a value. 
+You configure an ingress webhook with a provider, secret and target log. Once klev receives the http call, it will validate it, and then push a new message on the target log with the webhook payload as a value. 
 
 GitHub Webhooks
 ---------------
 
-Let's try to add a GitHub webhook. We'll need to first configure klev, then add a webhook to GitHub, and finally see the payloads in klev.
+Let's try to add a GitHub ingress webhook. We'll need to first configure klev, then add a webhook to GitHub, and finally see the payloads in klev.
 
 klev configuration
 ------------------
@@ -25,9 +25,9 @@ $ klev logs create --metadata "github webhooks"
 }
 ```
 
-Then add the webhook itself, like:
+Then add the ingress webhook itself, like:
 ```bash
-$ klev webhooks create --log-id log_2NcGE3LLPDhHS2pPwUh946EibAK --metadata "github webhook" --type "github" --secret REDACTED
+$ klev ingress-webhooks create --log-id log_2NcGE3LLPDhHS2pPwUh946EibAK --metadata "github webhook" --type "github" --secret REDACTED
 {
   "webhook_id": "wh_2NcGTsqkKANRT9mxieRbSpKIlaB",
   "log_id": "log_2NcGE3LLPDhHS2pPwUh946EibAK",
