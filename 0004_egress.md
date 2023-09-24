@@ -3,9 +3,9 @@
 Egress Webhooks
 ===============
 
-We added support for egress webhooks to klev. Egress webhooks let you directly receive new messages that come to a log, without having to consume them directly. 
+We added support for egress webhooks to klev. Egress webhooks let you directly receive new messages that come to a log, without having to consume it directly. 
 
-You configure an egress webhook with source log, destination url and the type of payload (e.g. if you want the full message or just the key or value of the message). klev will generate a secret for you, that you can use to validate the incoming webhook.
+You configure an egress webhook with source log, destination url and the type of payload (e.g. if you want the full message or just the key or value of the message). klev will generate a secret for you, which you use to validate the incoming webhook.
 
 Receiving webhooks
 ------------------
@@ -15,16 +15,17 @@ Lets look at an example of how you can receive webhooks from klev. We'll need to
 ngrok configuration
 -------------------
 
-To receive webhooks on the internet we need a public address. The easiest way to have one (that I know of) is by using [ngrok](https://ngrok.com). Go to their [dashboard](https://dashboard.ngrok.com) and start ngrok with:
+To receive webhooks on the internet we need a public address. The easiest way to have one (that we know of) is by using [ngrok](https://ngrok.com). Go to their [dashboard](https://dashboard.ngrok.com), register for an account and start ngrok with:
 ```bash
 $ ngrok http 9000
 ```
-and copy the `Forwarding` url, in this example https://7e087ef51c73.ngrok.app
+
+Then copy the `Forwarding` url, in this example https://7e087ef51c73.ngrok.app
 
 klev configuration
 ------------------
 
-Start by adding a log that will feed our webhook:
+Start by adding a log that will feed your webhook:
 ```bash
 $ klev logs create --metadata "egress webhook test"
 {
@@ -56,7 +57,7 @@ $ klev receive --secret "ewhsec_4WWS5n4YcVrX8FhtxTKG3ctFHud3amGsr"
 running server at :9000
 ```
 
-Then in another terminal, lets send a message:
+Now lets send a message from another terminal:
 ```bash
 $ klev publish log_2VnvpTOoNFQRf0G9peK1zKlfhlf --value "hello world"
 {
@@ -64,7 +65,7 @@ $ klev publish log_2VnvpTOoNFQRf0G9peK1zKlfhlf --value "hello world"
 }
 ```
 
-and back in the first terminal (where we run `klev receive`):
+Back to the first terminal (where we run `klev receive`) you will see:
 ```bash
 Offset: 0
  Time: 2023-09-23 17:42:07.24796 +0000 UTC
@@ -72,7 +73,7 @@ Offset: 0
  Value: hello world
 ```
 
-We can also check the status of the egress webhook by running:
+You can also check the status of the egress webhook by running:
 ```bash
 $ klev egress-webhooks status "ewh_2Vo4QwZuZy1sK1zwbgrUOgwOaZB"
 {
@@ -90,6 +91,6 @@ $ klev egress-webhooks status "ewh_2Vo4QwZuZy1sK1zwbgrUOgwOaZB"
 Conclusion
 ----------
 
-By using the power of [klev](https://klev.dev), we can receive messages from klev directly into our app, allowing us to be notified for changes without consuming from klev all the time. 
+By using the power of [klev](https://klev.dev), we can receive messages from klev directly into our app, allowing us to be notified for new messages without consuming from klev all the time. 
 
 &#128075; Enjoy hacking!
