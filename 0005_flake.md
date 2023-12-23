@@ -3,7 +3,7 @@
 direnv and (nix) flakes
 ===============
 
-To ease the development and provide easily reproducible environment, at klev we use a combination of [direnv](https://direnv.net/), [nix](https://nixos.org/) and [flakes](https://nixos.wiki/wiki/Flakes). With all these, as soon as you enter our main project directory, all relevant tools and dependencies are installed and made available to use by the developer.
+To ease the development and provide easily reproducible environment, at [klev](https://klev.dev) we use a combination of [direnv](https://direnv.net/), [nix](https://nixos.org/) and [flakes](https://nixos.wiki/wiki/Flakes). With all these, as soon as you enter our main project directory, all relevant tools and dependencies are installed and made available to use by the developer.
 
 direnv
 ------
@@ -12,7 +12,7 @@ According to [direnv main page](https://direnv.net/):
 
 > `direnv` is an extension for your shell. It augments existing shells with a new feature that can load and unload environment variables depending on the current directory.
 
-Said another way, `direnv` allows its users to define a set of environment variables that are active only while they are in a certain directory (or its children). The concrete file we use in klev looks like this:
+Said another way, `direnv` allows its users to define a set of environment variables that are active only while they are in a certain directory (or its children). The concrete file we use in [klev](https://klev.dev) looks like this:
 
 ```
 # .direnv
@@ -21,7 +21,7 @@ dotenv
 layout go
 ```
 
-The first time you enter `direnv` directory, you'll need to run `direnv allow` to grant `direnv` permission to run. Here is an example of interaction, when entering klev's directory:
+The first time you enter `direnv` directory, you'll need to run `direnv allow` to grant `direnv` permission to run. Here is an example of interaction, when entering [klev](https://klev.dev)'s directory:
 
 ```
 $ cd klev
@@ -33,7 +33,7 @@ direnv: using flake
 direnv: export +AR +AS +CC +CONFIG_SHELL +CXX +DETERMINISTIC_BUILD ...
 ```
 
-Our `.direnv` at klev is  simple - it does the following:
+Our `.direnv` at [klev](https://klev.dev) is simple - it does the following:
  * `use flake` - load a build environment using flakes (next section)
  * `dotenv` - load additional environment variables from `.env`
  * `layout go` - set `$GOPATH` to “$(direnv_layout_dir)/go” (e.g. `.direnv/go`) to isolate this project specific go env.
@@ -53,7 +53,7 @@ According to [flakes main page](https://nixos.wiki/wiki/Flakes):
 
 In my (probably naive) view, flakes is a way to be even more declarative then pure nix. It takes a `flake.nix` file, which defines both inputs (which in pure nix are pulled from the env) and outputs, e.g. what apps, packages and shells are going to be available after evaluating the `flake.nix` file.
 
-Here is an example of `flake.nix` used by klev:
+Here is an example of `flake.nix` used by [klev](https://klev.dev):
 
 ```
 {
@@ -132,7 +132,7 @@ This part describe we'll be using the following packages:
  * `go` - which is the official golang package
  * `caddy` - the [caddy http server](https://caddyserver.com/)
  * `terraform` - [terraform](https://www.terraform.io/) to manage our infra
- * `ansible` - [ansible](https://www.ansible.com/) to deploy klev
+ * `ansible` - [ansible](https://www.ansible.com/) to deploy
 
 > **NOTE** `LC_ALL="C.UTF-8";` is required to run ansible on some of our systems.
 
