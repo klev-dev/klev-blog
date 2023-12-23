@@ -8,7 +8,7 @@ To ease the development and provide easily reproducible environment, at klev we 
 direnv
 ------
 
-According to their main page:
+According to [direnv main page](https://direnv.net/):
 
 > `direnv` is an extension for your shell. It augments existing shells with a new feature that can load and unload environment variables depending on the current directory.
 
@@ -41,13 +41,13 @@ Our `.direnv` at klev is  simple - it does the following:
 nix and flakes
 --------------
 
-According to Nix's main page:
+According to [nix main page](https://nixos.org/):
 
 > Nix is a tool that takes a unique approach to package management and system configuration. Learn how to make reproducible, declarative and reliable systems. 
 
 While full discussion of what is nix is beyond the scope of this tutorial, the most relevant for our discussion is using it for declarative development environments - it allows us to describe what we use in our development declaratively and it will pull the dependencies out of it store. 
 
-According to Flake's main page:
+According to [flakes main page](https://nixos.wiki/wiki/Flakes):
 
 > Flakes is a feature of managing Nix packages to simplify usability and improve reproducibility of Nix installations.
 
