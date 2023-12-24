@@ -15,7 +15,7 @@ According to [direnv main page](https://direnv.net/):
 Said another way, `direnv` allows its users to define a set of environment variables that are active only while they are in a certain directory (or its children). The concrete file we use in [klev](https://klev.dev) looks like this:
 
 ```
-# .direnv
+# .envrc
 use flake
 dotenv
 layout go
@@ -33,7 +33,7 @@ direnv: using flake
 direnv: export +AR +AS +CC +CONFIG_SHELL +CXX +DETERMINISTIC_BUILD ...
 ```
 
-Our `.direnv` at [klev](https://klev.dev) is simple - it does the following:
+Our `.envrc` at [klev](https://klev.dev) is simple - it does the following:
  * `use flake` - load a build environment using flakes (next section)
  * `dotenv` - load additional environment variables from `.env`
  * `layout go` - set `$GOPATH` to “$(direnv_layout_dir)/go” (e.g. `.direnv/go`) to isolate this project specific go env.
@@ -135,6 +135,23 @@ This part describe we'll be using the following packages:
  * `ansible` - [ansible](https://www.ansible.com/) to deploy
 
 > **NOTE** `LC_ALL="C.UTF-8";` is required to run ansible on some of our systems.
+
+Here how it looks for [klev](https://klev.dev):
+
+```
+$ ansible --version
+ansible may be found in the following packages:
+  extra/ansible-core 2.15.5-1	/usr/bin/ansible
+
+$ cd klev
+direnv: loading ~/Sources/klev/.envrc
+direnv: using flake
+direnv: export +AR +AS +CC +CONFIG_SHELL +CXX ...
+
+$ ansible --version
+ansible [core 2.15.5]
+...
+```
 
 Conclusion
 ----------
