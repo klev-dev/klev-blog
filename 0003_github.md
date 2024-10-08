@@ -17,7 +17,7 @@ klev configuration
 
 Start by adding a log, that will contain the payloads:
 ```bash
-$ klev logs create --metadata "github webhooks"
+$ klev-cli logs create --metadata "github webhooks"
 {
   "log_id": "log_2NcGE3LLPDhHS2pPwUh946EibAK",
   "metadata": "github webhook",
@@ -27,7 +27,7 @@ $ klev logs create --metadata "github webhooks"
 
 Then add the ingress webhook itself, like:
 ```bash
-$ klev ingress-webhooks create --log-id log_2NcGE3LLPDhHS2pPwUh946EibAK --metadata "github webhook" --type "github" --secret REDACTED
+$ klev-cli ingress-webhooks create --log-id log_2NcGE3LLPDhHS2pPwUh946EibAK --metadata "github webhook" --type "github" --secret REDACTED
 {
   "webhook_id": "wh_2NcGTsqkKANRT9mxieRbSpKIlaB",
   "log_id": "log_2NcGE3LLPDhHS2pPwUh946EibAK",
@@ -53,7 +53,7 @@ klev consume
 Now lets check what this webhook delivered us:
 
 ```bash
-$ klev consume log_2NcGE3LLPDhHS2pPwUh946EibAK
+$ klev-cli consume log_2NcGE3LLPDhHS2pPwUh946EibAK
 {
   "next_offset": 1,
   "encoding": "string",

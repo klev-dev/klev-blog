@@ -27,7 +27,7 @@ klev configuration
 
 Start by adding a log that will feed your webhook:
 ```bash
-$ klev logs create --metadata "egress webhook test"
+$ klev-cli logs create --metadata "egress webhook test"
 {
   "log_id": "log_2VnvpTOoNFQRf0G9peK1zKlfhlf",
   "metadata": "egress webhook test",
@@ -37,7 +37,7 @@ $ klev logs create --metadata "egress webhook test"
 
 Then add the egress webhook itself:
 ```bash
-$ klev egress-webhooks create --log-id "log_2VnvpTOoNFQRf0G9peK1zKlfhlf" --metadata "egress webhook test" --destination "https://7e087ef51c73.ngrok.app"
+$ klev-cli egress-webhooks create --log-id "log_2VnvpTOoNFQRf0G9peK1zKlfhlf" --metadata "egress webhook test" --destination "https://7e087ef51c73.ngrok.app"
 {
   "webhook_id": "ewh_2VnwJdcym3NLEaA6MUkrPWzKWkQ",
   "metadata": "egress webhook test",
@@ -53,13 +53,13 @@ klev receive
 
 Now we are ready to receive messages, so lets start it:
 ```bash
-$ klev receive --secret "ewhsec_4WWS5n4YcVrX8FhtxTKG3ctFHud3amGsr"
+$ klev-cli receive --secret "ewhsec_4WWS5n4YcVrX8FhtxTKG3ctFHud3amGsr"
 running server at :9000
 ```
 
 Now lets send a message from another terminal:
 ```bash
-$ klev publish log_2VnvpTOoNFQRf0G9peK1zKlfhlf --value "hello world"
+$ klev-cli publish log_2VnvpTOoNFQRf0G9peK1zKlfhlf --value "hello world"
 {
   "next_offset": 1
 }
@@ -75,7 +75,7 @@ Offset: 0
 
 You can also check the status of the egress webhook by running:
 ```bash
-$ klev egress-webhooks status "ewh_2Vo4QwZuZy1sK1zwbgrUOgwOaZB"
+$ klev-cli egress-webhooks status "ewh_2Vo4QwZuZy1sK1zwbgrUOgwOaZB"
 {
   "webhook_id": "ewh_2Vo4QwZuZy1sK1zwbgrUOgwOaZB",
   "active": true,
